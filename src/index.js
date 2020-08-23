@@ -3,16 +3,12 @@ const b1 = document.querySelector('.add')
 const b2 = document.querySelector('.add-and-roll')
 const b3 = document.querySelector('.roll-and-keep')
 
-console.log(b1)
-console.log(b2)
-console.log(b3)
-//console.log(buttons)
-//buttons.forEach(button => console.log(button));
-
 const pool = document.querySelector('.counter');
-const result = document.querySelector('.result')
 
-console.log(result)
+const result = document.querySelectorAll('.result')
+
+
+// (result.innerHTML = Math.ceil(Math.random() * 6))
 
 //Add one to pool
 b1.addEventListener(
@@ -20,12 +16,15 @@ b1.addEventListener(
     () => (pool.innerHTML = Number.parseInt(pool.innerHTML) + 1)
 )
 
-//Add one to pool and roll pool
-//need to roll into array pls ty
+// Add one to pool and roll pool
+// need to roll into array pls ty
 b2.addEventListener(
     'click',
     () => {
-        (pool.innerHTML = Number.parseInt(pool.innerHTML) + 1)
-            (result.innerHTML = Math.floor(Math.random() * 7))
+        pool.innerHTML = Number.parseInt(pool.innerHTML) + 1
+
+        let arr = Array.from({ length: Number.parseInt(pool.innerHTML) }, () => Math.ceil(Math.random() * 6));
+
+        result.innerHTML = JSON.stringify(arr)
     }
 )
