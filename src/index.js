@@ -47,6 +47,10 @@ b2.addEventListener(
 b3.addEventListener(
     'click',
     () => {
-        rollDie()
+        if (pool.innerHTML == 0) {
+            pool.innerHTML = 1
+            rollDie()
+            pool.innerHTML = 0
+        } else rollDie()
     }
 )
