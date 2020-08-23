@@ -7,23 +7,46 @@ const pool = document.querySelector('.pool');
 
 const result = document.querySelector('.result')
 
-// (result.innerHTML = Math.ceil(Math.random() * 6))
-
 //Add one to pool
+const incrementPool = () => {
+    pool.innerHTML = Number.parseInt(pool.innerHTML) + 1
+    result.innerHTML = ""
+}
+
+//Roll dice equal to the current pool
+const rollDie = () => {
+    let arr = Array.from({ length: Number.parseInt(pool.innerHTML) }, () => Math.ceil(Math.random() * 6))
+    result.innerHTML = arr.toString()
+}
+
+//When pool = 6, roll pool and reset
+const resetPool = () => {
+    if (pool.innerHTML >= 6) {
+        rollDie()
+        pool.innerHTML = 0
+    }
+}
+
 b1.addEventListener(
     'click',
-    () => pool.innerHTML = Number.parseInt(pool.innerHTML) + 1
+    () => {
+        incrementPool()
+        resetPool()
+    }
 )
 
-// Add one to pool and roll pool
-// need to roll into array pls ty
 b2.addEventListener(
     'click',
     () => {
-        pool.innerHTML = Number.parseInt(pool.innerHTML) + 1
+        incrementPool()
+        rollDie()
+        resetPool()
+    }
+)
 
-        let arr = Array.from({ length: Number.parseInt(pool.innerHTML) }, () => Math.ceil(Math.random() * 6));
-
-        result.innerHTML = arr.toString()
+b3.addEventListener(
+    'click',
+    () => {
+        rollDie()
     }
 )
